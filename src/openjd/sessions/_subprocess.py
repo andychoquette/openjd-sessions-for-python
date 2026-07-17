@@ -544,14 +544,14 @@ class LoggingSubprocess(object):
                     os.killpg(self._sudo_child_process_group_id, numeric_signal)
                 except OSError:
                     self._logger.info(
-                        "Could not directly send signal {signal_name} to {self._posix_signal_target.pid}, trying sudo.",
+                        f"Could not directly send signal {signal_name} to process group {self._sudo_child_process_group_id}, trying sudo.",
                         extra=LogExtraInfo(openjd_log_content=LogContent.PROCESS_CONTROL),
                     )
                 else:
                     return
             else:
                 self._logger.info(
-                    "Could not directly send signal {signal_name} to {process.pid}, trying sudo.",
+                    f"Could not directly send signal {signal_name} to {process.pid}, trying sudo.",
                     extra=LogExtraInfo(openjd_log_content=LogContent.PROCESS_CONTROL),
                 )
 
